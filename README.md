@@ -19,10 +19,17 @@ pip install -r requirements.txt
 
 Next, specify data paths in `constants.py`. You don't need to specify all paths, just the ones you need. For example, if you will be using a CIFAR-10 [Adversarial Poison](https://arxiv.org/abs/2106.10807), specify `CIFAR10_ROOT` and `DATA_SETUPS['error-max']['root']` (the location of the poisoned data). 
 
+**Download Poisons**: Original repos allow you to easily download or create poisons. We provide a short list here:
+- [Adversarial Poisoning](https://github.com/lhfowl/adversarial_poisons)
+- [Unlearnable Examples](https://github.com/HanxunH/Unlearnable-Examples)
+- [Autoregressive Perturbations](https://github.com/psandovalsegura/autoregressive-poisoning)
+- [LSP](https://github.dev/dayu11/Availability-Attacks-Create-Shortcuts)
+- [OPS](https://github.com/cychomatica/One-Pixel-Shotcut)
+
 ## Reproduce Results
 #### Section 4.2: DNNs can learn useful features from unlearnable datasets
 
-The following command trains a ResNet18 on [Adversarial Poison](https://arxiv.org/abs/2106.10807) for 60 epochs:
+The following command trains a ResNet-18 on [Adversarial Poison](https://arxiv.org/abs/2106.10807) for 60 epochs:
 ```
 python dfr_step_1.py error-max
 ```
@@ -58,7 +65,7 @@ The first step (Lines 1-4 of Algorithm 1) to using Orthogonal projection is trai
 ```
 python orthogonal_projection_step_1.py ops
 ```
-The checkpoint is saved in `logistic-regression-ckpts/` directory along with a visualization of the recovered perturbations (weights from the linear model) in `ops.png`. The second step (Lines 5-6 of Algorithm 1) is to project the poisoned data and train a ResNet model:
+The checkpoint is saved in `logistic-regression-ckpts/` directory along with a visualization of the recovered perturbations (weights from the linear model) in `ops.png`. The second step (Lines 5-6 of Algorithm 1) is to project the poisoned data and train a ResNet-18 model:
 ```
 python orthogonal_projection_step_2.py ops
 ```
